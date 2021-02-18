@@ -48,7 +48,7 @@ $("#submit").click(function() {
         var data = (data)
         
         var city = data.location.name;
-        var temp = data.current.temperature + 'F';
+        var temp = data.current.temperature;
         var humidity = data.current.humidity;
         var icon = data.current.weather_icons;
         var feelsLike = data.current.feelslike;
@@ -56,17 +56,17 @@ $("#submit").click(function() {
         var windSpeed = data.current.wind_speed;
         var windDirection = data.current.wind_dir;
 
-            var resultCard = $(`<span class="result-card"></span>`)
-            var cardLocation = $(`<h3 >City ${city}<br></h3>`)
-            var cardWeather = $(`<h3 >Current ${temp}<br></h3>`)
-            var cardFeels = $(`<h3 >Feels Like ${feelsLike}<br></h3>`)
-            var cardHumidity =$(`<h3 >Humidity ${humidity}<br></h3>`)
-            var cardWindSpeed =$(`<h3 >Wind Speed ${windSpeed}<br></h3>`)
-            var cardWindDir = $(`<h3 >Wind Direction ${windDirection}<br></h3>`)
+            var resultCard = $(`<span class="table"></span>`)
+            var cardLocation = $(`<h3 >City: ${city}<br></h3>`)
+            var cardWeather = $(`<h3 >Current: ${temp}<br></h3>`)
+            var cardFeels = $(`<h3 >Feels Like: ${feelsLike}<br></h3>`)
+            var cardHumidity =$(`<h3 >Humidity: ${humidity}<br></h3>`)
+            var cardWindSpeed =$(`<h3 >Wind Speed: ${windSpeed}<br></h3>`)
+            var cardWindDir = $(`<h3 >Wind Direction: ${windDirection}<br></h3>`)
 
-            var cardIcon = $(`<img class=card-image${icon} src='${icon}'></ul>`)
+       //var cardIcon = $(`<img class=card-image${icon} src='${icon}'></ul>`)
             var cardDescription = $(`<h3>${weatherDes}<br></h3>`)
-            resultCard.append(cardLocation).append(cardWeather).append(cardFeels).append(cardHumidity).append(cardWindSpeed).append(cardWindDir).append(cardIcon).append(cardDescription)
+            resultCard.append(cardLocation).append(cardWeather).append(cardFeels).append(cardHumidity).append(cardWindSpeed).append(cardWindDir).append(cardDescription)
             resultBox.append(resultCard)
         //  })
       })  
