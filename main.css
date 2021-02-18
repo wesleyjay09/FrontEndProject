@@ -20,14 +20,14 @@ body {
 #container {
     width:30%;
     position: absolute;
-    top:50%;
-    left:55%;
+    top:;
+    left:50%;
     transform: translate(-50%, -50%);
 }
 
 #searchBox {
-    width:37%;
-    position: relative;
+    width:37%;    
+    position: absolute;
     display: flex;
     background: rgb(77, 127, 192);
 }
@@ -36,7 +36,7 @@ body {
 
 .search {
     width:100%;
-    border: 3px solid #DAAD86;
+    border: 3px solid #CFD8FC;
     border-right:none;
     padding: 5px;
     height: 20px;
@@ -46,19 +46,17 @@ body {
 
 .search:focus {
     color: #000;
-    box-shadow: 0 0 5px #DAAD86;
+    box-shadow: 0 0 5px #CFD8FC;
 }
 .submit {
     width: 100px;
     height: 36px;
-    border: 1px solid #DAAD86;
-    background: #DAAD86;
+    border: 1px solid #CFD8FC;
+    background: #CFD8FC;
     text-align: center;
-    color: white;
-    border-radius:   5px ;
     cursor: pointer;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif
+    font-family:monospace
     
 }
 
@@ -69,15 +67,47 @@ body {
     align-items: center;
     height: 30vh;
     width: 30vh;
-    background:#f7dc6f;
-    top:2%;
-    left:2%;
+    background:#fcf3cf;
+    top:25%;
+    left:57%;
     border-radius: 100%;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color:white ;
     line-height: 30px;
 }
- 
-.table {
-    display: grid;  
+
+.login {
+    display: flex;
+    position: absolute;
+    left:21.8%;   
 }
+ 
+#userName {
+    
+    width:100%;
+    border: 3px solid #CFD8FC;
+    border-right:none;
+    padding: 5px;
+    height: 20px;
+    outline: none;
+    color: #9dbfaf;
+    
+}
+#userName:focus {
+    color: #000;
+    box-shadow: 0 0 5px #CFD8FC;
+
+} 
+
+ #button {
+    width: 100px;
+    height: 36px;
+    border: 1px solid #CFD8FC;
+    background: #CFD8FC;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    font-family:monospace; 
+
+}
+
+

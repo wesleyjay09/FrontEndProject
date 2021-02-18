@@ -34,14 +34,7 @@ $("body").append(resultBox);
 
 
 $("#submit").click(function() {
-    
-    var userInput = $('#input').val();
-   
-    
-    
-    
-    
-    //console.log(userInput
+    let userInput = $('#input').val();
     
     $.get(`http://api.weatherstack.com/current?access_key=fd35e38508293aefdabe73f4bb33a7a2&query=${userInput}`, (data) => {
         $("#results").empty()
@@ -50,7 +43,6 @@ $("#submit").click(function() {
         var city = data.location.name;
         var temp = data.current.temperature;
         var humidity = data.current.humidity;
-        var icon = data.current.weather_icons;
         var feelsLike = data.current.feelslike;
         var weatherDes = data.current.weather_descriptions;
         var windSpeed = data.current.wind_speed;
@@ -63,52 +55,50 @@ $("#submit").click(function() {
             var cardHumidity =$(`<h3 >Humidity: ${humidity}<br></h3>`)
             var cardWindSpeed =$(`<h3 >Wind Speed: ${windSpeed}<br></h3>`)
             var cardWindDir = $(`<h3 >Wind Direction: ${windDirection}<br></h3>`)
-
-       //var cardIcon = $(`<img class=card-image${icon} src='${icon}'></ul>`)
             var cardDescription = $(`<h3>${weatherDes}<br></h3>`)
+
             resultCard.append(cardLocation).append(cardWeather).append(cardFeels).append(cardHumidity).append(cardWindSpeed).append(cardWindDir).append(cardDescription)
             resultBox.append(resultCard)
         //  })
       })  
  });
 
-// {
-//     "request": {
-//         "type": "City",
-//         "query": "New York, United States of America",
-//         "language": "en",
-//         "unit": "m"
-//     },
-//     "location": {
-//         "name": "New York",
-//         "country": "United States of America",
-//         "region": "New York",
-//         "lat": "40.714",
-//         "lon": "-74.006",
-//         "timezone_id": "America/New_York",
-//         "localtime": "2019-09-07 08:14",
-//         "localtime_epoch": 1567844040,
-//         "utc_offset": "-4.0"
-//     },
-//     "current": {
-//         "observation_time": "12:14 PM",
-//         "temperature": 13,
-//         "weather_code": 113,
-//         "weather_icons": [
-//             "https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"
-//         ],
-//         "weather_descriptions": [
-//             "Sunny"
-//         ],
-//         "wind_speed": 0,
-//         "wind_degree": 349,
-//         "wind_dir": "N",
-//         "pressure": 1010,
-//         "precip": 0,
-//         "humidity": 90,
-//         "cloudcover": 0,
-//         "feelslike": 13,
-//         "uv_index": 4,
-//         "visibility": 16
-//     }
-// }
+
+  var loginContainer = $('<div></div>')
+  $(loginContainer).attr('class', 'login')
+  $("body").append(loginContainer);
+
+  var userName = $('<input></input>');
+  $(userName).attr('id', 'userName');
+  $(userName).attr('placeholder','Username')
+  $(userName).attr('type','text')
+  $(loginContainer).append(userName);
+
+
+  var button = $('<button></button>');
+  $(button).attr('id','button');
+  $(button).attr('class', 'submit');
+  $(button).text('Login')
+  $(loginContainer).append(button)
+
+ const saveToLocalStorage = () => {
+    let inputName = userName.val()
+    let location = $("#input").val()
+    let inputNameString = JSON.stringify(inputName);
+      localStorage.setItem(inputNameString , location )
+  }
+  $(button).click(saveToLocalStorage)
+
+  console.log(JSON.parse(localStorage.getItem('textInput')))
+
+
+     
+//  })
+ 
+//  //add event listener that saves text input to local storage
+//  //when the user clicks login in, it will save the user name.
+//  //if there is a username input then save location searched last
+
+//  //save searched location of user
+
+//  //when user inputs username the last location searched will appear
