@@ -55,19 +55,20 @@ $("#submit").click(function() {
         feelsLike: data.current.feelslike,
         weatherDes: data.current.weather_descriptions,
         windSpeed: data.current.wind_speed,
-        windDirection: data.current.wind_dir
+        windDirection: data.current.wind_dir,
+        icon: data.weather_icon
         }
-
-        var resultCard = $(`<ul class="list"></ul>`)
-        var cardLocation = $(`<li >City: ${weather.city}<br></li>`)
-        var cardWeather = $(`<li >Current: ${weather.temp}<br></li>`)
-        var cardFeels = $(`<li >Feels Like: ${weather.feelsLike}<br></li>`)
-        var cardHumidity =$(`<li >Humidity: ${weather.humidity}<br></li>`)
-        var cardWindSpeed =$(`<li >Wind Speed: ${weather.windSpeed}<br></li>`)
-        var cardWindDir = $(`<li >Wind Direction: ${weather.windDirection}<br></li>`)
-        var cardDescription = $(`<li>${weather.weatherDes}<br></li>`)
-
-        resultCard.append(cardLocation).append(cardWeather).append(cardFeels).append(cardHumidity).append(cardWindSpeed).append(cardWindDir).append(cardDescription)
+console.log(weather.icon)
+        var resultCard = $(`<table class="list"></table>`)
+        var cardLocation = $(`<div class="table" id="city">${weather.city}</div>`)
+        var cardWeather = $(`<div class="table" id="temp">${weather.temp}F</div>`)
+        var cardFeels = $(`<div class="table" id="feels">Feels Like: ${weather.feelsLike}</div>`)
+        var cardHumidity =$(`<div class="table" id="hum">Humidity: ${weather.humidity}%</div>`)
+        var cardWindSpeed =$(`<div class="table" id="windSpeed>Wind Speed: ${weather.windSpeed}</div>`)
+        var cardWindDir = $(`<div class="table" id="windDir>Wind Direction: ${weather.windDirection}</div>`)
+        var cardDescription = $(`<div id"description">Description:${weather.weatherDes}<div>`)
+        
+        resultCard.append(cardLocation).append(cardWeather).append(cardFeels).append(cardHumidity).append(cardWindSpeed).append(cardWindDir).append(cardDescription).append(icon)
         resultBox.append(resultCard)
       
         })
@@ -78,12 +79,48 @@ $("#submit").click(function() {
  const saveToLocalStorage = () => {
     let inputName = userName.val()
     let location = $("#input").val()
-    console.log(inputName)
-      localStorage.setItem(inputName , location )
+    localStorage.setItem(inputName , location )
+    
   }
   $(save).click(saveToLocalStorage)
 
 const accessLocalStorage = () => {
-    localStorage.getItem(inputName)
-}
- 
+    let inputName = userName.val()
+    let x = localStorage.getItem(inputName);
+    $("#input").val(x)
+    }
+    
+$(login).click(accessLocalStorage)
+$(login).click(function() {
+    let userInput = $('#input').val();
+
+
+     $.get(`http://api.weatherstack.com/current?access_key=fd35e38508293aefdabe73f4bb33a7a2&query=${userInput}`, (data) => {
+        $("#results").empty()
+        var data = (data)
+
+        var weather = {
+        city: data.location.name,
+        temp: data.current.temperature,
+        humidity: data.current.humidity,
+        feelsLike: data.current.feelslike,
+        weatherDes: data.current.weather_descriptions,
+        windSpeed: data.current.wind_speed,
+        windDirection: data.current.wind_dir
+        }
+
+        var resultCard = $(`<table class="list"></table>`)
+        var cardLocation = $(`<div class="table" id="city">${weather.city}</div>`)
+        var cardWeather = $(`<div class="table" id="temp">${weather.temp}</div>`)
+        var cardFeels = $(`<div class="table" id="feels">Feels Like: ${weather.feelsLike}</div>`)
+        var cardHumidity =$(`<div class="table" id="hum">Humidity: ${weather.humidity}%</div>`)
+        var cardWindSpeed =$(`<div class="table" id="windSpeed>Wind Speed: ${weather.windSpeed}</div>`)
+        var cardWindDir = $(`<div class="table" id="windDir>Wind Direction: ${weather.windDirection}</div>`)
+        var cardDescription = $(`<div class="table" id"description">Description:${weather.weatherDes}<div>`)
+        
+        resultCard.append(cardLocation).append(cardWeather).append(cardFeels).append(cardHumidity).append(cardWindSpeed).append(cardWindDir).append(cardDescription)
+        resultBox.append(resultCard)
+      
+        })
+    
+    });
